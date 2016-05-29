@@ -3,7 +3,7 @@
 =        Default Configuration        =
 =====================================*/
 var isWin = /^win/.test(process.platform);
-
+ 
 var gulpConfig = {
   dest: 'www',
   paths : {
