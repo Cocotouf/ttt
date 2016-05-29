@@ -1,1 +1,19 @@
-Joueurs {{test}}
+<h2>Liste des joueurs</h2>
+
+<table id="players-list">
+  <thead>
+    <tr>
+      <th><md-button class="md-full">Nom</md-button></th>
+      <th><md-button class="md-full">Prénom</md-button></th>
+      <th><md-button class="md-full">Points</md-button></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="player in players">
+      <td>{{player.lastname}}</td>
+      <td>{{player.firstname}}</td>
+      <td>{{player.points}}</td>
+    </tr>
+  </tbody>
+  <tfoot></tfoot>
+</table>
