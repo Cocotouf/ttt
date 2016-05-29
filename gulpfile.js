@@ -18,8 +18,10 @@ var gulpConfig = {
     js: {
       vendor: [
         './bower_components/angular/angular.js',
-        './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         './bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        './bower_components/angular-aria/angular-aria.js',
+        './bower_components/angular-animate/angular-animate.js',
+        './bower_components/angular-material/angular-material.js'
       ],
       src: [
         './src/js/**/*.js'
@@ -177,7 +179,7 @@ gulp.task('_sass-app', function sassApp(done) {
   var p = gulp.src(gulpConfig.paths.sass.src)
     .pipe(sass({errLogToConsole : true}))
 //    .pipe(cssmin())
-//    .pipe(rename({extname : '.min.css'}))
+    .pipe(rename({extname : '.min.css'}))
     .pipe(gulp.dest('./www/css/'));
   
   if (gulpConfig.server.livereload) {
@@ -205,7 +207,7 @@ gulp.task('build:js', function buildJs(done) {
     .pipe(concat('app.js'));
   
    // pipe.pipe(uglify())
-  // pipe.pipe(rename({suffix: '.min'}));
+  pipe.pipe(rename({suffix: '.min'}))
   pipe.pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(path.join(gulpConfig.dest, 'js')));
 
