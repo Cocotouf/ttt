@@ -1,8 +1,9 @@
 <h2>Liste des joueurs</h2>
 
-<table id="players-list">
+<table id="players-list" class="row">
   <thead>
     <tr>
+      <th class="seed"></th>
       <th><md-button class="md-full" md-ink-ripple="#106cc8">Nom</md-button></th>
       <th><md-button class="md-full" md-ink-ripple="#106cc8">Prénom</md-button></th>
       <th><md-button class="md-full" md-ink-ripple="#106cc8">Points</md-button></th>
@@ -10,12 +11,36 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="player in players()">
+    <tr ng-repeat="player in players()" ng-class="{removed: player.removed}">
+      <td class="seed">{{$index+1}}</td>
       <td>{{player.lastname | uppercase}}</td>
       <td>{{player.firstname}}</td>
       <td>{{player.points}}</td>
-      <td><md-button class="md-fab md-mini md-warn">-</md-button></td>
+      <td><md-button class="md-fab md-mini md-warn" ng-click="removePlayer(player)">-</md-button></td>
+      <td colspan="5" class="after-action"><md-button class="md-full md-warn md-raised" ng-click="cancelRemovePlayer(player)">Annuler la suppression</td>
     </tr>
   </tbody>
-  <tfoot></tfoot>
 </table>
+
+<div class="row form-container">
+  <form name="newPlayerForm" id="newPlayerForm" novalidate>
+    <md-input-container>
+      <label>Nom</label>
+      <input type="text" name="lastname" required ng-model="newPlayer.lastname">
+    </md-input-container>
+    <md-input-container>
+      <label>Prénom</label>
+      <input type="text" name="firstname" required ng-model="newPlayer.firstname">
+    </md-input-container>
+    <md-input-container>
+      <label>Points</label>
+      <input type="number" name="points" required ng-model="newPlayer.points">
+    </md-input-container>
+  
+    <md-button class="md-fab md-mini md-raised md-success" ng-disabled="newPlayerForm.$invalid" ng-click="addPlayer()">+</md-button>
+  </form>
+</div>
+
+<div class="row generation">
+  <md-button class="md-primary md-raised" md-ink-ripple="#106cc8">Générer les poules</md-button>
+</div>

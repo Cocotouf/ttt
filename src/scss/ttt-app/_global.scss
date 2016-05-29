@@ -14,3 +14,16 @@ ui-view {
   border-radius: 0;
   display: block;
 }
+.md-button.md-success {
+  background-color: $green;
+  color: white;
+  &:hover:not([disabled]) {background-color: $green-hover}
+}
+
+button,
+select,
+html,
+textarea,
+input {
+  font-family: inherit;
+}
