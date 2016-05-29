@@ -1,0 +1,32 @@
+$fab-size: 20px;
+
+#players-list {
+  width: 80%;
+  table-layout: fixed;
+  margin: auto;
+  margin-top: 40px;
+  text-align: center;
+  thead tr {
+    border-bottom: 3px solid $blue;
+    th {
+      width: calc(100%/3 - 50px/3);
+      &.action {width: 50px;}
+      .md-button {
+        text-transform: none;
+        font-size: 1.2em;
+      }
+    }
+  }
+  tbody tr {
+    &:nth-child(even) {background-color: #f5f5f5}
+    td {
+      .md-button {
+        width: $fab-size;
+        line-height: $fab-size;
+        height: $fab-size;
+        min-height: $fab-size;
+        margin: 3px;
+      }
+    }
+  }
+}

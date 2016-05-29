@@ -3,16 +3,18 @@
 <table id="players-list">
   <thead>
     <tr>
-      <th><md-button class="md-full">Nom</md-button></th>
-      <th><md-button class="md-full">Prénom</md-button></th>
-      <th><md-button class="md-full">Points</md-button></th>
+      <th><md-button class="md-full" md-ink-ripple="#106cc8">Nom</md-button></th>
+      <th><md-button class="md-full" md-ink-ripple="#106cc8">Prénom</md-button></th>
+      <th><md-button class="md-full" md-ink-ripple="#106cc8">Points</md-button></th>
+      <th class="action"></th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="player in players">
-      <td>{{player.lastname}}</td>
+    <tr ng-repeat="player in players()">
+      <td>{{player.lastname | uppercase}}</td>
       <td>{{player.firstname}}</td>
       <td>{{player.points}}</td>
+      <td><md-button class="md-fab md-mini md-warn">-</md-button></td>
     </tr>
   </tbody>
   <tfoot></tfoot>
