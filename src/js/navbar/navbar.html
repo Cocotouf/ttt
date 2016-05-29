@@ -1,9 +1,20 @@
-<nav id="global-navigation">
-  <div class="nav-wrapper">
-  <ul>
-    <li ng-class="{active: isStateActive('players')}"><md-button md-ink-ripple="#ff8c00" ui-sref="players" class="md-full">Joueurs</md-button></li>
-    <li ng-class="{active: isStateActive('roundrobins')}"><md-button md-ink-ripple="#ff8c00" ui-sref="roundrobins" class="md-full">Poules</md-button></li>
-    <li ng-class="{active: isStateActive('brackets')}"><md-button md-ink-ripple="#ff8c00" ui-sref="brackets" class="md-full">Brackets</md-button></li>
-  </ul>
-  </div>
-</nav>
+<!-- <nav id="global-navigation"> -->
+<!--   <div class="nav-wrapper"> -->
+<!--   <ul> -->
+<!--     <li ng-class="{active: isStateActive('players')}"><md-button md-ink-ripple="#ff8c00" ui-sref="players" class="md-full">Joueurs</md-button></li> -->
+<!--     <li ng-class="{active: isStateActive('roundrobins')}"><md-button md-ink-ripple="#ff8c00" ui-sref="roundrobins" class="md-full">Poules</md-button></li> -->
+<!--     <li ng-class="{active: isStateActive('brackets')}"><md-button md-ink-ripple="#ff8c00" ui-sref="brackets" class="md-full">Brackets</md-button></li> -->
+<!--   </ul> -->
+<!--   </div> -->
+<!-- </nav> -->
+
+
+<md-tabs>
+  <md-tab label="Joueurs" ui-sref="players" md-active="isStateActive('players')" md-ink-ripple="#ff8c00" ui-sref="players">
+  </md-tab>
+  <md-tab label="Poules" ui-sref="roundrobins" md-active="isStateActive('roundrobins')">
+  </md-tab>
+  <md-tab label="Brackets" ui-sref="brackets" md-active="isStateActive('brackets')">
+  </md-tab>
+</md-tabs>
+  <ui-view></ui-view>

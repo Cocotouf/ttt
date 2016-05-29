@@ -21,5 +21,13 @@ angular.module('ttt', ['ui.router', 'ngMaterial'])
 		})
   $urlRouterProvider.when('', '/players');
   $urlRouterProvider.otherwise('/players');
+  
+  $mdThemingProvider.theme('default')
+  .accentPalette('orange', {
+    'default': '500', // by default use shade 400 from the pink palette for primary intentions
+  })
+  .primaryPalette('blue', {
+    'default': '800', // by default use shade 400 from the pink palette for primary intentions
+  })
 })
 })();
