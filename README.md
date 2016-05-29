@@ -8,8 +8,11 @@ Round robins composed of 3 or 4 players. The 2 best of each round robin qualifie
 * Printable round robins, graphic bracket and match reports
 
 # Technologies
-* Node.js
+* Node.js (npm)
 * GulpJS
 * Bower
 * AngularJS
 * AngularUI (Bootstrap for AngularJS)
+
+# Prerequisites
+* Node.js
