@@ -3,7 +3,7 @@
 =        Default Configuration        =
 =====================================*/
 var isWin = /^win/.test(process.platform);
- 
+
 var gulpConfig = {
   dest: 'www',
   paths : {
@@ -12,14 +12,16 @@ var gulpConfig = {
         './bower_components/font-awesome/scss/font-awesome.scss'
       ],
       src : [
-        'src/scss/ttt.app.scss'           
+        'src/scss/ttt-app.scss'           
       ]
     },
     js: {
       vendor: [
         './bower_components/angular/angular.js',
-        './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         './bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        './bower_components/angular-aria/angular-aria.js',
+        './bower_components/angular-animate/angular-animate.js',
+        './bower_components/angular-material/angular-material.js'
       ],
       src: [
         './src/js/**/*.js'
@@ -60,12 +62,9 @@ var runSequence       = require('run-sequence'),
     sass              = require('gulp-sass'),
 //    uglify            = require('gulp-uglify'),
     sourcemaps        = require('gulp-sourcemaps'),
-    fs                = require('fs'),
-    url               = require('url'),
     cssmin            = require('gulp-cssmin'),
     concat            = require('gulp-concat'),
     rimraf            = require('gulp-rimraf'),
-    objectAssign      = require('object-assign'),
     templateCache     = require('gulp-angular-templatecache'),
     replace           = require('gulp-replace'),
     ngFilesort        = require('gulp-angular-filesort'),
@@ -180,7 +179,7 @@ gulp.task('_sass-app', function sassApp(done) {
   var p = gulp.src(gulpConfig.paths.sass.src)
     .pipe(sass({errLogToConsole : true}))
 //    .pipe(cssmin())
-//    .pipe(rename({extname : '.min.css'}))
+    .pipe(rename({extname : '.min.css'}))
     .pipe(gulp.dest('./www/css/'));
   
   if (gulpConfig.server.livereload) {
@@ -208,7 +207,7 @@ gulp.task('build:js', function buildJs(done) {
     .pipe(concat('app.js'));
   
    // pipe.pipe(uglify())
-  // pipe.pipe(rename({suffix: '.min'}));
+  pipe.pipe(rename({suffix: '.min'}))
   pipe.pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(path.join(gulpConfig.dest, 'js')));
 

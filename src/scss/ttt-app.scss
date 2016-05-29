@@ -1,0 +1,13 @@
+@import "reset";
+
+@import "../../bower_components/angular-material/angular-material.scss";
+
+@import "variables";
+@import "mixins";
+@import "./ttt-app/global";
+@import "./ttt-app/navbar";
+@import "./ttt-app/players";
+
+html, body {
+  font-family: 'Lato', sans-serif;
+}
