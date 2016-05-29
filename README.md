@@ -12,7 +12,7 @@ Round robins composed of 3 or 4 players. The 2 best of each round robin qualifie
 * GulpJS
 * Bower
 * AngularJS
-* AngularUI (Bootstrap for AngularJS)
+* AngularMaterial
 
 # Prerequisites
 * Node.js
