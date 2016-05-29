@@ -1,0 +1,30 @@
+{
+  "name": "tt-tournament-app",
+  "version": "1.0.0",
+  "description": "Table Tennis Tournament App",
+  "main": "./gulpfile.js",
+  "moduleType": [
+    "angularjs"
+  ],
+  "keywords": [
+    "angularjs",
+    "table tennis",
+    "tournament"
+  ],
+  "authors": [
+    "Cocotouf"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-bootstrap": "1.x",
+    "angular-ui-router": "1.0.0-alpha.5",
+    "font-awesome": "4.x",
+    "bootstrap-sass": "3.3.x"
+  }
+}
