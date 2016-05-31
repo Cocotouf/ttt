@@ -4,9 +4,16 @@
 angular.module('ttt')
 .service('PlayersService', PlayersService);
 
-function PlayersService($timeout) {
-	var players = [{lastname: 'Fenet', firstname: 'Christophe', points: 1174}, {lastname: 'Riot', firstname: 'Philippe', points: 612}, {lastname: 'Fenet', firstname: 'Régis', points: 500}];
+function PlayersService($timeout, $window) {
+	var players = angular.fromJson($window.localStorage.getItem('ttt.players'));
+	if (players === null) {
+		players = [];
+	}
 	var removeTimeout;
+	
+	function save() {
+		$window.localStorage.setItem('ttt.players', angular.toJson(players));
+	}
 	
 	return {
 		getPlayers: function() {
@@ -17,11 +24,13 @@ function PlayersService($timeout) {
 		},
 		addPlayer: function(player) {
 			players.push(player);
+			save();
 		},
 		removePlayer: function(player) {
 			player.removed = true;
 			removeTimeout = $timeout(function() {
 				players.splice(players.indexOf(player), 1);
+				save();
 			}, 2000);
 		},
 		cancelRemovePlayer: function(player) {
@@ -33,5 +42,5 @@ function PlayersService($timeout) {
 	}
 }
 
-PlayersService.$inject = ['$timeout'];
+PlayersService.$inject = ['$timeout', '$window'];
 })();
