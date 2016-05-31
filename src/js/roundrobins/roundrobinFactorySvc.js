@@ -13,7 +13,7 @@ function RoundrobinFactory(PlayersSvc) {
 		}
 	}
 	
-	return Roundrobin  ;
+	return Roundrobin;
 }
 
 RoundrobinFactory.$inject = ['PlayersService'];
