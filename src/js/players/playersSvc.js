@@ -14,15 +14,30 @@ function PlayersService($timeout, $window) {
 	function save() {
 		$window.localStorage.setItem('ttt.players', angular.toJson(players));
 	}
+  function generatePlayerId() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  }
 	
 	return {
 		getPlayers: function() {
 			return players;
 		},
+		getPlayersByPoints: function() {
+			return players.sort(function(a,b){return b.points - a.points});
+		},
+		getPlayer: function(playerId) {
+			for (var i = 0; i < players.length; ++i) {
+				if (players[i].id === playerId) {
+					return players[i];
+				}
+			}
+			return false;
+		},
 		getCount: function() {
 			return players.length;
 		},
 		addPlayer: function(player) {
+			player.id = generatePlayerId();
 			players.push(player);
 			save();
 		},

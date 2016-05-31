@@ -4,8 +4,9 @@
 angular.module('ttt')
 .controller('PlayersController', PlayersController);
 
-function PlayersController($scope, Players) {
-	$scope.players = Players.getPlayers;
+function PlayersController($scope, PlayersSvc, RoundrobinsSvc) {
+	//FIXME getPlayers
+	$scope.players = PlayersSvc.getPlayersByPoints;
 	$scope.newPlayer = {
 		lastname: '',
 		firstname: '',
@@ -13,7 +14,7 @@ function PlayersController($scope, Players) {
 	};
 	
 	$scope.addPlayer = function() {
-		Players.addPlayer(angular.copy($scope.newPlayer));
+		PlayersSvc.addPlayer(angular.copy($scope.newPlayer));
 		$scope.newPlayer = {
 			lastname: '',
 			firstname: '',
@@ -22,9 +23,10 @@ function PlayersController($scope, Players) {
 		$scope.newPlayerForm.$setUntouched()
 	};
 	
-	$scope.removePlayer = Players.removePlayer;
-	$scope.cancelRemovePlayer = Players.cancelRemovePlayer;
+	$scope.removePlayer = PlayersSvc.removePlayer;
+	$scope.cancelRemovePlayer = PlayersSvc.cancelRemovePlayer;
+	$scope.generateRoundrobins = RoundrobinsSvc.generateRoundrobins;
 }
 
-PlayersController.$inject = ['$scope', 'PlayersService'];
+PlayersController.$inject = ['$scope', 'PlayersService', 'RoundrobinsService'];
 })();
