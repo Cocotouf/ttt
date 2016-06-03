@@ -16,6 +16,14 @@ function RoundrobinsService($window, Roundrobin) {
 
 	return {
 		getRoundrobins: function() {return roundrobins;},
+    getRoundrobin: function(roundId) {
+      for (var i = 0; i < roundrobins.length; ++i) {
+        if (roundrobins[i].id === roundId) {
+          return roundrobins[i];
+        }
+      }
+      return false;
+    },
 		generateRoundrobins: function(players) {
 			roundrobins = [];
 			if (players.length % 3 === 0) {
@@ -45,9 +53,7 @@ function RoundrobinsService($window, Roundrobin) {
 				}
 			}
 			
-			
 			save();
-			console.log(roundrobins)
 		}
 	}
 }

@@ -2,7 +2,8 @@
 'use strict';
 
 angular.module('ttt', ['ui.router', 'ngMaterial'])
-.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', '$compileProvider',
+    function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $compileProvider) {
 	$stateProvider
 		.state('players', {
 			url: "/players",
@@ -28,6 +29,8 @@ angular.module('ttt', ['ui.router', 'ngMaterial'])
   })
   .primaryPalette('blue', {
     'default': '800', // by default use shade 400 from the pink palette for primary intentions
-  })
-})
+  });
+  
+  $compileProvider.debugInfoEnabled(false)
+}])
 })();

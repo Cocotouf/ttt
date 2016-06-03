@@ -1,10 +1,17 @@
+body {
+  overflow: hidden;
+}
+
 h2 {
   font-size: 2em;
   color: $blue;
 }
 ui-view {
-  margin: 20px 50px;
+  padding: 20px 50px;
   clear: both;
+  overflow: auto;
+  height: calc(100% - 48px);
+  box-sizing: border-box;
 }
 .md-full.md-button {
   width: 100%;
