@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="player in players()" ng-class="{removed: player.removed}">
+    <tr ng-repeat="player in $players.players()" ng-class="{removed: player.removed}">
       <td class="seed">{{$index+1}}</td>
       <td>{{player.lastname | uppercase}}</td>
       <td>{{player.firstname}}</td>
@@ -26,21 +26,21 @@
   <form name="newPlayerForm" id="newPlayerForm" novalidate>
     <md-input-container>
       <label>Nom</label>
-      <input type="text" name="lastname" required ng-model="newPlayer.lastname">
+      <input type="text" name="lastname" required ng-model="$players.newPlayer.lastname">
     </md-input-container>
     <md-input-container>
       <label>Prénom</label>
-      <input type="text" name="firstname" required ng-model="newPlayer.firstname">
+      <input type="text" name="firstname" required ng-model="$players.newPlayer.firstname">
     </md-input-container>
     <md-input-container>
       <label>Points</label>
-      <input type="number" name="points" required ng-model="newPlayer.points">
+      <input type="number" name="points" required ng-model="$players.newPlayer.points">
     </md-input-container>
   
-    <md-button class="md-fab md-mini md-raised md-success" ng-disabled="newPlayerForm.$invalid" ng-click="addPlayer()">+</md-button>
+    <md-button class="md-fab md-mini md-raised md-success" ng-disabled="newPlayerForm.$invalid" ng-click="$players.addPlayer()">+</md-button>
   </form>
 </div>
 
 <div class="row generation">
-  <md-button class="md-primary md-raised" md-ink-ripple="#106cc8" ng-click="generateRoundrobins(players())">Générer les poules</md-button>
+  <md-button class="md-primary md-raised" md-ink-ripple="#106cc8" ng-click="$players.generateRoundrobins($players.players())">Générer les poules</md-button>
 </div>

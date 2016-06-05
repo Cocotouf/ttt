@@ -2,20 +2,24 @@
 'use strict';
 
 angular.module('ttt')
-.controller('PlayersController', PlayersController);
+.component('players',{
+	templateUrl: 'players/players.html',
+	controller: PlayersController,
+	controllerAs: '$players'
+});
 
-function PlayersController($scope, PlayersSvc, RoundrobinsSvc) {
+function PlayersController($scope, PlayersSvc, RoundRobinsSvc) {
 	//FIXME getPlayers
-	$scope.players = PlayersSvc.getPlayersByPoints;
-	$scope.newPlayer = {
+	this.players = PlayersSvc.getPlayersByPoints;
+	this.newPlayer = {
 		lastname: '',
 		firstname: '',
 		points: 500
 	};
 	
-	$scope.addPlayer = function() {
-		PlayersSvc.addPlayer(angular.copy($scope.newPlayer));
-		$scope.newPlayer = {
+	this.addPlayer = function() {
+		PlayersSvc.addPlayer(angular.copy(this.newPlayer));
+		this.newPlayer = {
 			lastname: '',
 			firstname: '',
 			points: 500
@@ -23,10 +27,10 @@ function PlayersController($scope, PlayersSvc, RoundrobinsSvc) {
 		$scope.newPlayerForm.$setUntouched()
 	};
 	
-	$scope.removePlayer = PlayersSvc.removePlayer;
-	$scope.cancelRemovePlayer = PlayersSvc.cancelRemovePlayer;
-	$scope.generateRoundrobins = RoundrobinsSvc.generateRoundrobins;
+	this.removePlayer = PlayersSvc.removePlayer;
+	this.cancelRemovePlayer = PlayersSvc.cancelRemovePlayer;
+	this.generateRoundrobins = RoundRobinsSvc.generateRoundrobins;
 }
 
-PlayersController.$inject = ['$scope', 'PlayersService', 'RoundrobinsService'];
+PlayersController.$inject = ['$scope', 'PlayersService', 'RoundRobinsService'];
 })();

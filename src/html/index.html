@@ -12,7 +12,17 @@
   </head>
 
   <body ng-app="ttt" ng-controller="AppController">
-    <navbar></navbar>
+
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+      <md-tab label="Joueurs" ui-sref="players" md-active="isStateActive('players')">
+        <players class="container"></players>
+      </md-tab>
+      <md-tab label="Poules" ui-sref="roundrobins" md-active="isStateActive('roundrobins')">
+        <round-robins class="container"></round-robins>
+      </md-tab>
+      <md-tab label="Brackets" ui-sref="brackets" md-active="isStateActive('brackets')">
+      </md-tab>
+    </md-tabs>
     
     <script type="text/javascript" charset="utf-8" src="js/app.min.js"></script>
   </body>

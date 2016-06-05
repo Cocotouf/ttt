@@ -1,17 +1,36 @@
 body {
-  overflow: hidden;
+  overflow-y: scroll;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{
+	width:8px;
+	height: 6px;
+	background-color:#cccccc;
+	border-radius: 10px;
+	cursor: pointer;
+} 
+::-webkit-scrollbar-thumb{
+	background-color:$blue;
+	border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover{
+	background-color:#1775b7;
+}
+::-webkit-scrollbar-thumb:active{
+	background-color:#1467a1;
 }
 
 h2 {
   font-size: 2em;
   color: $blue;
 }
-ui-view {
+.container {
   padding: 20px 50px;
   clear: both;
   overflow: auto;
-  height: calc(100% - 48px);
   box-sizing: border-box;
+  display: block;
 }
 .md-full.md-button {
   width: 100%;

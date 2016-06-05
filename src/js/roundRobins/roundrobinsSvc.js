@@ -2,34 +2,35 @@
 'use strict';
 
 angular.module('ttt')
-.service('RoundrobinsService', RoundrobinsService);
+.service('RoundRobinsService', RoundRobinsService);
 
-function RoundrobinsService($window, Roundrobin) {
-	var roundrobins = angular.fromJson($window.localStorage.getItem('ttt.roundrobins'));
-	if (roundrobins === null) {
-		roundrobins = [];
+function RoundRobinsService($window, Roundrobin) {
+	var roundRobins = angular.fromJson($window.localStorage.getItem('ttt.roundRobins'));
+	if (roundRobins === null) {
+		roundRobins = [];
 	}
 	
 	function save() {
-		$window.localStorage.setItem('ttt.roundrobins', angular.toJson(roundrobins));
+		$window.localStorage.setItem('ttt.roundRobins', angular.toJson(roundRobins));
 	}
 
 	return {
-		getRoundrobins: function() {return roundrobins;},
+		getRoundRobins: function() {return roundRobins;},
     getRoundrobin: function(roundId) {
-      for (var i = 0; i < roundrobins.length; ++i) {
-        if (roundrobins[i].id === roundId) {
-          return roundrobins[i];
+      for (var i = 0; i < roundRobins.length; ++i) {
+      	//roundId is a string
+        if (roundRobins[i].id == roundId) {
+          return roundRobins[i];
         }
       }
       return false;
     },
-		generateRoundrobins: function(players) {
-			roundrobins = [];
+		generateRoundRobins: function(players) {
+			roundRobins = [];
 			if (players.length % 3 === 0) {
 				var rrn = players.length / 3;
 				for (var i = 0; i < rrn; ++i) {
-					roundrobins.push(new Roundrobin(i + 1, [players[i].id, players[2*rrn-i-1].id, players[2*rrn+i].id]));
+					roundRobins.push(new Roundrobin(i + 1, [players[i].id, players[2*rrn-i-1].id, players[2*rrn+i].id]));
 				}
 			} else if (players.length % 3 === 1) {
 				var rrn = (players.length-1) / 3;
@@ -38,7 +39,7 @@ function RoundrobinsService($window, Roundrobin) {
 					if (i === rrn-1) {
 						playersIds.push(players[players.length-1].id);
 					}
-					roundrobins.push(new Roundrobin(i + 1, playersIds));
+					roundRobins.push(new Roundrobin(i + 1, playersIds));
 				}
 			} else if (players.length % 3 === 2) {
 				var rrn = (players.length-2) / 3;
@@ -49,7 +50,7 @@ function RoundrobinsService($window, Roundrobin) {
 					} else if (i === rrn-2) {
 						playersIds.push(players[players.length-1].id);
 					}
-					roundrobins.push(new Roundrobin(i + 1, playersIds));
+					roundRobins.push(new Roundrobin(i + 1, playersIds));
 				}
 			}
 			
@@ -58,5 +59,5 @@ function RoundrobinsService($window, Roundrobin) {
 	}
 }
 
-RoundrobinsService.$inject = ['$window', 'RoundrobinFactory'];
+RoundRobinsService.$inject = ['$window', 'RoundrobinFactory'];
 })();
