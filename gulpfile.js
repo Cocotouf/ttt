@@ -42,7 +42,7 @@ var gulpConfig = {
 
   server: {
     host: '0.0.0.0',
-    port: '8000',
+    port: '80',
     livereload: true,
     livereloadPort: 35729
   },
@@ -108,6 +108,7 @@ gulp.task('server:app', function serverApp() {
     host: gulpConfig.server.host,
     port: gulpConfig.server.port,
     livereload: gulpConfig.server.livereload,
+    fallback: 'www/index.html'
   });
 });
 

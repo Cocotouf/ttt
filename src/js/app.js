@@ -2,8 +2,9 @@
 'use strict';
 
 angular.module('ttt', ['ui.router', 'ngMaterial'])
-.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', '$compileProvider',
-    function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $compileProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$mdThemingProvider', '$compileProvider', '$locationProvider',
+    function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $compileProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
 	$stateProvider
 		.state('players', {
 			url: "/players",
