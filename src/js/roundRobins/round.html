@@ -1,0 +1,23 @@
+<table>
+  <caption>Poule {{$round.roundId}}</caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan=2>Joueur</th>
+      <th>S+</th>
+      <th>S-</th>
+      <th>S</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="player in $round.round.players">
+      <td>{{$index+1}}</td>
+      <td>{{::player.lastname}} {{::player.firstname}}</td>
+      <td>{{$round.getSetsWon(player)}}</td>
+      <td>{{$round.getSetsLost(player)}}</td>
+      <td>{{$round.getSetsDiff(player)}}</td>
+      <td>{{$round.getSetsLost(player)}}</td>
+    </tr>
+  </tbody>
+</table>

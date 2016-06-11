@@ -2,19 +2,24 @@
 'use strict';
 
 angular.module('ttt')
-.controller('PlayersController', PlayersController);
+.component('players',{
+	templateUrl: 'players/players.html',
+	controller: PlayersController,
+	controllerAs: '$players'
+});
 
-function PlayersController($scope, Players) {
-	$scope.players = Players.getPlayers;
-	$scope.newPlayer = {
+function PlayersController($scope, PlayersSvc, RoundRobinsSvc) {
+	//FIXME getPlayers
+	this.players = PlayersSvc.getPlayersByPoints;
+	this.newPlayer = {
 		lastname: '',
 		firstname: '',
 		points: 500
 	};
 	
-	$scope.addPlayer = function() {
-		Players.addPlayer(angular.copy($scope.newPlayer));
-		$scope.newPlayer = {
+	this.addPlayer = function() {
+		PlayersSvc.addPlayer(angular.copy(this.newPlayer));
+		this.newPlayer = {
 			lastname: '',
 			firstname: '',
 			points: 500
@@ -22,9 +27,10 @@ function PlayersController($scope, Players) {
 		$scope.newPlayerForm.$setUntouched()
 	};
 	
-	$scope.removePlayer = Players.removePlayer;
-	$scope.cancelRemovePlayer = Players.cancelRemovePlayer;
+	this.removePlayer = PlayersSvc.removePlayer;
+	this.cancelRemovePlayer = PlayersSvc.cancelRemovePlayer;
+	this.generateRoundRobins = RoundRobinsSvc.generateRoundRobins;
 }
 
-PlayersController.$inject = ['$scope', 'PlayersService'];
+PlayersController.$inject = ['$scope', 'PlayersService', 'RoundRobinsService'];
 })();

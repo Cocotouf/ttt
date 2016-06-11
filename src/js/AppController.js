@@ -4,11 +4,9 @@
 angular.module('ttt')
 .controller('AppController', AppController);
 
-function AppController($window) {
-	$window.onbeforeunload = function() {
-		//return "";
-	}
+function AppController($scope, $state) {
+	$scope.isStateActive = $state.is;
 }
 
-AppController.$inject = ['$window'];
+AppController.$inject = ['$scope', '$state'];
 })();
