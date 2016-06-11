@@ -62,7 +62,8 @@ function RoundRobinsService($window, RoundRobin) {
 			}
 			
 			save();
-		}
+		},
+    save: save
 	}
 }
 

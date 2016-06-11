@@ -14,9 +14,9 @@ angular.module('ttt')
 function Round(RoundRobinsSvc) {
 	this.round = RoundRobinsSvc.getRoundRobin(this.roundId);
 	
-	this.getSetsWon = function(player) {
-	  
-	}
+	this.onchange = function() {
+	  RoundRobinsSvc.save();
+	};
 }
 
 Round.$inject = ['RoundRobinsService'];

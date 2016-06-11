@@ -97,31 +97,49 @@ function RoundRobinFactory(PlayersSvc) {
 		}
 	}
 
-	RoundRobin.prototype.getSetsWon = function(player) {
+	RoundRobin.prototype.getSetsWon = function(playerId) {
 	  var setsWon = 0;
 	  this.matches.forEach(function(match) {
-	    if (match.player1Id === player.id) {setsWon += match.score.player1;}
-	    else if (match.player2Id === player.id) {setsWon += match.score.player2;}
+	    if (match.player1Id === playerId) {setsWon += match.score.player1;}
+	    else if (match.player2Id === playerId) {setsWon += match.score.player2;}
 	  });
 	  return setsWon;
 	};
 
-  RoundRobin.prototype.getSetsLost = function(player) {
+  RoundRobin.prototype.getSetsLost = function(playerId) {
     var setsLost = 0;
     this.matches.forEach(function(match) {
-      if (match.player1Id === player.id) {setsLost += match.score.player2;}
-      else if (match.player2Id === player.id) {setsLost += match.score.player1;}
+      if (match.player1Id === playerId) {setsLost += match.score.player2;}
+      else if (match.player2Id === playerId) {setsLost += match.score.player1;}
     });
     return setsLost;
   };
 
-  RoundRobin.prototype.getSetsDiff = function(player) {
+  RoundRobin.prototype.getSetsDiff = function(playerId) {
     var setsDiff = 0;
     this.matches.forEach(function(match) {
-      if (match.player1Id === player.id) {setsDiff += match.score.player1 - match.score.player2;}
-      else if (match.player2Id === player.id) {setsDiff += match.score.player2 - match.score.player1;}
+      if (match.player1Id === playerId) {setsDiff += match.score.player1 - match.score.player2;}
+      else if (match.player2Id === playerId) {setsDiff += match.score.player2 - match.score.player1;}
     });
     return setsDiff;
+  };
+
+  RoundRobin.prototype.getVictories = function(playerId) {
+    var victories = 0;
+    this.matches.forEach(function(match) {
+      if (match.player1Id === playerId && match.score.player1 === 3) {victories++}
+      else if (match.player2Id === playerId && match.score.player2 === 3) {victories++}
+    });
+    return victories;
+  };
+
+  RoundRobin.prototype.getPlayer = function(playerId) {
+    for (var i = 0; i < this.players.length; ++i) {
+      if (this.players[i].id === playerId) {
+        return this.players[i];
+      }
+    }
+    return false;
   };
 	
 	return RoundRobin;

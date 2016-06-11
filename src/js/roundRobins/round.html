@@ -1,23 +1,42 @@
-<table>
+<table class="ranking">
   <caption>Poule {{$round.roundId}}</caption>
   <thead>
     <tr>
-      <th></th>
-      <th colspan=2>Joueur</th>
+      <th class="index"></th>
+      <th colspan=2 class="player-name">Joueur</th>
       <th>S+</th>
       <th>S-</th>
       <th>S</th>
-      <th>Points</th>
+      <th>V</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="player in $round.round.players">
-      <td>{{$index+1}}</td>
-      <td>{{::player.lastname}} {{::player.firstname}}</td>
-      <td>{{$round.getSetsWon(player)}}</td>
-      <td>{{$round.getSetsLost(player)}}</td>
-      <td>{{$round.getSetsDiff(player)}}</td>
-      <td>{{$round.getSetsLost(player)}}</td>
+    <tr ng-repeat="player in ::$round.round.players">
+      <td class="index">{{$index+1}}</td>
+      <td class="player-name">{{::player.lastname}} {{::player.firstname}}</td>
+      <td>{{::player.points}}</td>
+      <td>{{$round.round.getSetsWon(player.id)}}</td>
+      <td>{{$round.round.getSetsLost(player.id)}}</td>
+      <td>{{$round.round.getSetsDiff(player.id)}}</td>
+      <td>{{$round.round.getVictories(player.id)}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="matches">
+  <tbody>
+    <tr ng-repeat="match in ::$round.round.matches">
+    <td class="player-name left">{{::$round.round.getPlayer(match.player1Id).lastname}} {{::$round.round.getPlayer(match.player1Id).firstname}}</td>
+    <td class="score">
+      <md-input-container>
+        <input type="number" max="3" min="0" ng-model="match.score.player1" aria-label="." ng-class="{win: match.score.player1 === 3}" ng-change="$round.onchange()">
+      </md-input-container>
+      -
+      <md-input-container>
+        <input type="number" max="3" min="0" ng-model="match.score.player2" aria-label="." ng-class="{win: match.score.player2 === 3}" ng-change="$round.onchange()">
+      </md-input-container>
+    </td>
+    <td class="player-name right">{{::$round.round.getPlayer(match.player2Id).lastname}} {{::$round.round.getPlayer(match.player2Id).firstname}}</td>
     </tr>
   </tbody>
 </table>
