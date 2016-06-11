@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="player in ::$round.round.players">
+    <tr ng-repeat="player in $round.round.getPlayersByVictories()">
       <td class="index">{{$index+1}}</td>
       <td class="player-name">{{::player.lastname}} {{::player.firstname}}</td>
       <td>{{::player.points}}</td>

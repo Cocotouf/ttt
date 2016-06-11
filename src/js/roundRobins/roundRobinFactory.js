@@ -141,6 +141,39 @@ function RoundRobinFactory(PlayersSvc) {
     }
     return false;
   };
+  
+  function sortPlayersByVictories(player1, player2) {
+    //By victories
+    var player1v = this.getVictories(player1.id),
+        player2v = this.getVictories(player2.id);
+    if (player1v > player2v) {
+      return -1;
+    } else if (player2v > player1v) {
+      return 1;
+    }
+    //By set difference
+    var player1sd = this.getSetsDiff(player1.id),
+        player2sd = this.getSetsDiff(player2.id);
+    if (player1sd > player2sd) {
+      return -1;
+    } else if (player2sd > player1sd) {
+      return 1;
+    }
+    //By set best scorer
+    var player1sw = this.getSetsWon(player1.id),
+        player2sw = this.getSetsWon(player2.id);
+    if (player1sw > player2sw) {
+      return -1;
+    } else if (player2sw > player1sw) {
+      return 1;
+    }
+    //By name
+    return (player1.lastname+player1.firstname > player2.lastname+player2.firstname ? 1 : -1);
+  }
+  
+  RoundRobin.prototype.getPlayersByVictories = function() {
+    return this.players.sort(sortPlayersByVictories.bind(this));
+  };
 	
 	return RoundRobin;
 }
