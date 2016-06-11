@@ -29,7 +29,7 @@ function PlayersController($scope, PlayersSvc, RoundRobinsSvc) {
 	
 	this.removePlayer = PlayersSvc.removePlayer;
 	this.cancelRemovePlayer = PlayersSvc.cancelRemovePlayer;
-	this.generateRoundrobins = RoundRobinsSvc.generateRoundrobins;
+	this.generateRoundRobins = RoundRobinsSvc.generateRoundRobins;
 }
 
 PlayersController.$inject = ['$scope', 'PlayersService', 'RoundRobinsService'];

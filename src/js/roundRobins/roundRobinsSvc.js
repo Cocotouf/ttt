@@ -4,10 +4,17 @@
 angular.module('ttt')
 .service('RoundRobinsService', RoundRobinsService);
 
-function RoundRobinsService($window, Roundrobin) {
-	var roundRobins = angular.fromJson($window.localStorage.getItem('ttt.roundRobins'));
-	if (roundRobins === null) {
-		roundRobins = [];
+function RoundRobinsService($window, RoundRobin) {
+	var roundRobins = [];
+	var datas = angular.fromJson($window.localStorage.getItem('ttt.roundRobins'));
+	if (datas !== null) {
+	  for (var i = 0; i < datas.length; ++i) {
+	    var playersIds = [];
+	    for (var j = 0; j < datas[i].players.length; ++j) {
+	      playersIds.push(datas[i].players[j].id);
+	    }
+	    roundRobins.push(new RoundRobin(datas[i].id, playersIds, datas[i].matches));
+	  }
 	}
 	
 	function save() {
@@ -16,7 +23,7 @@ function RoundRobinsService($window, Roundrobin) {
 
 	return {
 		getRoundRobins: function() {return roundRobins;},
-    getRoundrobin: function(roundId) {
+    getRoundRobin: function(roundId) {
       for (var i = 0; i < roundRobins.length; ++i) {
       	//roundId is a string
         if (roundRobins[i].id == roundId) {
@@ -30,7 +37,7 @@ function RoundRobinsService($window, Roundrobin) {
 			if (players.length % 3 === 0) {
 				var rrn = players.length / 3;
 				for (var i = 0; i < rrn; ++i) {
-					roundRobins.push(new Roundrobin(i + 1, [players[i].id, players[2*rrn-i-1].id, players[2*rrn+i].id]));
+					roundRobins.push(new RoundRobin(i + 1, [players[i].id, players[2*rrn-i-1].id, players[2*rrn+i].id]));
 				}
 			} else if (players.length % 3 === 1) {
 				var rrn = (players.length-1) / 3;
@@ -39,7 +46,7 @@ function RoundRobinsService($window, Roundrobin) {
 					if (i === rrn-1) {
 						playersIds.push(players[players.length-1].id);
 					}
-					roundRobins.push(new Roundrobin(i + 1, playersIds));
+					roundRobins.push(new RoundRobin(i + 1, playersIds));
 				}
 			} else if (players.length % 3 === 2) {
 				var rrn = (players.length-2) / 3;
@@ -50,7 +57,7 @@ function RoundRobinsService($window, Roundrobin) {
 					} else if (i === rrn-2) {
 						playersIds.push(players[players.length-1].id);
 					}
-					roundRobins.push(new Roundrobin(i + 1, playersIds));
+					roundRobins.push(new RoundRobin(i + 1, playersIds));
 				}
 			}
 			
@@ -59,5 +66,5 @@ function RoundRobinsService($window, Roundrobin) {
 	}
 }
 
-RoundRobinsService.$inject = ['$window', 'RoundrobinFactory'];
+RoundRobinsService.$inject = ['$window', 'RoundRobinFactory'];
 })();

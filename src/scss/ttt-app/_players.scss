@@ -18,6 +18,9 @@ $fab-size: 20px;
     margin: 0;
     font-size: 2em;
   }
+  input[name="lastname"] {
+    text-transform: uppercase;
+  }
 }
 
 #players-list {

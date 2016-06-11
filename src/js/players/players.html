@@ -13,11 +13,11 @@
   <tbody>
     <tr ng-repeat="player in $players.players()" ng-class="{removed: player.removed}">
       <td class="seed">{{$index+1}}</td>
-      <td>{{player.lastname | uppercase}}</td>
+      <td>{{player.lastname}}</td>
       <td>{{player.firstname}}</td>
       <td>{{player.points}}</td>
-      <td><md-button class="md-fab md-mini md-warn" ng-click="removePlayer(player)">-</md-button></td>
-      <td colspan="5" class="after-action"><md-button class="md-full md-warn md-raised" ng-click="cancelRemovePlayer(player)">Annuler la suppression</td>
+      <td><md-button class="md-fab md-mini md-warn" ng-click="$players.removePlayer(player)">-</md-button></td>
+      <td colspan="5" class="after-action"><md-button class="md-full md-warn md-raised" ng-click="$players.cancelRemovePlayer(player)">Annuler la suppression</td>
     </tr>
   </tbody>
 </table>
@@ -42,5 +42,5 @@
 </div>
 
 <div class="row generation">
-  <md-button class="md-primary md-raised" md-ink-ripple="#106cc8" ng-click="$players.generateRoundrobins($players.players())">Générer les poules</md-button>
+  <md-button class="md-primary md-raised" md-ink-ripple="#106cc8" ng-click="$players.generateRoundRobins($players.players())">Générer les poules</md-button>
 </div>

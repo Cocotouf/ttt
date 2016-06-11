@@ -15,7 +15,13 @@ function PlayersService($timeout, $window) {
 		$window.localStorage.setItem('ttt.players', angular.toJson(players));
 	}
   function generatePlayerId() {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    var id = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for(var i = 0; i < 16; ++i) {
+      id += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return id;
   }
 	
 	return {
@@ -38,13 +44,19 @@ function PlayersService($timeout, $window) {
 		},
 		addPlayer: function(player) {
 			player.id = generatePlayerId();
+			player.lastname = player.lastname.toUpperCase();
 			players.push(player);
 			save();
 		},
 		removePlayer: function(player) {
 			player.removed = true;
 			removeTimeout = $timeout(function() {
-				players.splice(players.indexOf(player), 1);
+			  for (var i = 0; i < players.length; ++i) {
+			    if (players[i].id === player.id) {
+		        players.splice(i, 1);
+		        break;
+			    }
+			  }
 				save();
 			}, 2000);
 		},
